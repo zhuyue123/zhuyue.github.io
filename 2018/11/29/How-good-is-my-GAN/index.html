@@ -79,20 +79,22 @@
 
 
 
-<meta name="description" content="How good is my GAN 学习笔记&amp;emsp;&amp;emsp;GAN是当今最流行的图像生成方法之一。以前的令人印象深刻的结果都是通过目视检查得到证实的，直到最近才出现了一些定量标准。作者认为现有的办法是不够的，需要与你目前的任务相适应才好。在本篇文章中作者提出了两个基于图像分类网络的两个测量指标——GAN-train和GAN-test，这些分别近似GAN的召回率（多样性）和精度（图像的质量">
+<meta name="description" content="How good is my GAN 学习笔记&amp;emsp;&amp;emsp;GAN是当今最流行的图像生成方法之一。以前的令人印象深刻的结果都是通过目视检查得到证实的，直到最近才出现了一些定量标准。作者认为现有的办法是不够的，需要与你目前的任务相适应才好。在本篇文章中作者提出了两个基于图像分类网络的两个测量指标——GAN-train和GAN-test，这些分别近似GAN的召回率（多样性）和精度（图像的质">
 <meta name="keywords" content="gan">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How good is my GAN">
 <meta property="og:url" content="http://yoursite.com/2018/11/29/How-good-is-my-GAN/index.html">
 <meta property="og:site_name" content="ZhuYue&#39;s Home">
-<meta property="og:description" content="How good is my GAN 学习笔记&amp;emsp;&amp;emsp;GAN是当今最流行的图像生成方法之一。以前的令人印象深刻的结果都是通过目视检查得到证实的，直到最近才出现了一些定量标准。作者认为现有的办法是不够的，需要与你目前的任务相适应才好。在本篇文章中作者提出了两个基于图像分类网络的两个测量指标——GAN-train和GAN-test，这些分别近似GAN的召回率（多样性）和精度（图像的质量">
+<meta property="og:description" content="How good is my GAN 学习笔记&amp;emsp;&amp;emsp;GAN是当今最流行的图像生成方法之一。以前的令人印象深刻的结果都是通过目视检查得到证实的，直到最近才出现了一些定量标准。作者认为现有的办法是不够的，需要与你目前的任务相适应才好。在本篇文章中作者提出了两个基于图像分类网络的两个测量指标——GAN-train和GAN-test，这些分别近似GAN的召回率（多样性）和精度（图像的质">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://user-images.githubusercontent.com/44546944/50212937-371c2280-03b7-11e9-9faf-b2229773c20a.jpg">
+<meta property="og:image" content="https://user-images.githubusercontent.com/44546944/49210164-53035880-f3f7-11e8-8bff-c5b2642c7e77.PNG">
 <meta property="og:image" content="https://user-images.githubusercontent.com/44546944/50210995-7c8a2100-03b2-11e9-9f74-b36b1c4309be.PNG">
-<meta property="og:updated_time" content="2018-12-20T08:26:06.665Z">
+<meta property="og:updated_time" content="2018-12-20T08:28:32.836Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How good is my GAN">
-<meta name="twitter:description" content="How good is my GAN 学习笔记&amp;emsp;&amp;emsp;GAN是当今最流行的图像生成方法之一。以前的令人印象深刻的结果都是通过目视检查得到证实的，直到最近才出现了一些定量标准。作者认为现有的办法是不够的，需要与你目前的任务相适应才好。在本篇文章中作者提出了两个基于图像分类网络的两个测量指标——GAN-train和GAN-test，这些分别近似GAN的召回率（多样性）和精度（图像的质量">
-<meta name="twitter:image" content="https://user-images.githubusercontent.com/44546944/50210995-7c8a2100-03b2-11e9-9f74-b36b1c4309be.PNG">
+<meta name="twitter:description" content="How good is my GAN 学习笔记&amp;emsp;&amp;emsp;GAN是当今最流行的图像生成方法之一。以前的令人印象深刻的结果都是通过目视检查得到证实的，直到最近才出现了一些定量标准。作者认为现有的办法是不够的，需要与你目前的任务相适应才好。在本篇文章中作者提出了两个基于图像分类网络的两个测量指标——GAN-train和GAN-test，这些分别近似GAN的召回率（多样性）和精度（图像的质">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/44546944/50212937-371c2280-03b7-11e9-9faf-b2229773c20a.jpg">
 
 
 
@@ -333,11 +335,10 @@
       
 
       
-        <h1 id="How-good-is-my-GAN-学习笔记"><a href="#How-good-is-my-GAN-学习笔记" class="headerlink" title="How good is my GAN 学习笔记"></a><strong>How good is my GAN 学习笔记</strong></h1><p>&emsp;&emsp;GAN是当今最流行的图像生成方法之一。以前的令人印象深刻的结果都是通过目视检查得到证实的，直到最近才出现了一些定量标准。作者认为现有的办法是不够的，需要与你目前的任务相适应才好。在本篇文章中作者提出了两个基于图像分类网络的两个测量指标——GAN-train和GAN-test，这些分别近似GAN的召回率（多样性）和精度（图像的质量）。我们基于这两个指标评估了一些最近的GAN方法，并证明了性能的明显差异。此外，我们还观察到，数据集的难度从CIFAR10/CIFAR100到ImageNet的增加，和GANs的质量呈反比关系，这从我们的测量数据中可以明显看出。</p>
+        <p><img src="https://user-images.githubusercontent.com/44546944/50212937-371c2280-03b7-11e9-9faf-b2229773c20a.jpg" alt=""></p>
+<h1 id="How-good-is-my-GAN-学习笔记"><a href="#How-good-is-my-GAN-学习笔记" class="headerlink" title="How good is my GAN 学习笔记"></a><strong>How good is my GAN 学习笔记</strong></h1><p>&emsp;&emsp;GAN是当今最流行的图像生成方法之一。以前的令人印象深刻的结果都是通过目视检查得到证实的，直到最近才出现了一些定量标准。作者认为现有的办法是不够的，需要与你目前的任务相适应才好。在本篇文章中作者提出了两个基于图像分类网络的两个测量指标——GAN-train和GAN-test，这些分别近似GAN的召回率（多样性）和精度（图像的质量）。我们基于这两个指标评估了一些最近的GAN方法，并证明了性能的明显差异。此外，我们还观察到，数据集的难度从CIFAR10/CIFAR100到ImageNet的增加，和GANs的质量呈反比关系，这从我们的测量数据中可以明显看出。</p>
 <h2 id="1-引言"><a href="#1-引言" class="headerlink" title="1 引言"></a><strong>1 引言</strong></h2><p>&emsp;&emsp;GAN是由一对相互竞争的神经网络（生成器和鉴别器）组成的深度神经网络结构。该模型通过交替优化两个目标函数来训练。生成器G的任务是学习生成与真实图像相似的样本，鉴别器D的任务是学习更好地辨别真实和虚假数据。这种模式具有巨大的潜力，因为它可以学习生成任何数据分布。这种方法已经在一些计算机视觉问题上得到了成功的应用，比如文本到图像转换和风格迁移，超分辨率以及逼真自然图像生成。</p>
-<p>&emsp;&emsp;自从GAN提出以来，这几年提出了许多GAN的变体，比如提高生成图像质量的，稳定训练过程的。GANs也经过了修改，可以根据附加信息(例如类标签)生成给定类的图像。有许多方法可以做到这一点:从将标签y连接到生成器输入z或中间特征映射，到使用条件批处理规范化，以及使用辅助分类器来增加鉴别器。由于文献中经常提出几个这样的变体，一个关键问题是如何评价这些模型，并将其相互比较。</p>
-<center> ![1](https://user-images.githubusercontent.com/44546944/49210164-53035880-f3f7-11e8-8bff-c5b2642c7e77.PNG) </center>
-
+<p>&emsp;&emsp;自从GAN提出以来，这几年提出了许多GAN的变体，比如提高生成图像质量的，稳定训练过程的。GANs也经过了修改，可以根据附加信息(例如类标签)生成给定类的图像。有许多方法可以做到这一点:从将标签y连接到生成器输入z或中间特征映射，到使用条件批处理规范化，以及使用辅助分类器来增加鉴别器。由于文献中经常提出几个这样的变体，一个关键问题是如何评价这些模型，并将其相互比较。<br> <img src="https://user-images.githubusercontent.com/44546944/49210164-53035880-f3f7-11e8-8bff-c5b2642c7e77.PNG" alt="1"> </p>
 <p><strong>图1</strong> SNGAN模型生成的逼真图像，与真实图像相比，这些图像很难以主观评估。我们新的基于图像分类精度的测量方法(这里显示了GAN-train)克服了这个问题，显示了真实图像和生成图像之间的明显差异。</p>
 <p>&emsp;&emsp;GANs生成的图像的评估和比较具有挑战性。这在一定程度上是由于缺乏显式的可能性度量，而显式的可能性度量在可比较的概率模型中很常见。因此，对于GANs合成的图像，以往的许多工作仅仅依靠主观的视觉评价。从图1中SNGAN生成的样本图像可以看出，不可能通过主观评价来准确判断其质量。近两年的工作已经开始通过定量评价GAN的方法来应对这一挑战。</p>
 <p>&emsp;&emsp;Inception score(IS)和FID被认为是与生成图像的视觉质量相关的临时测量。IS通过计算图像产生的（logit）响应与边缘分布之间的KL散度来度量生成图像的质量，即所有生成的图像的平均响应，使用一个通过ImageNet上训练的Inception网络。换句话说，IS不会将样本与目标分布进行比较，并且仅限于量化生成样本的多样性。FID比较真实图像和生成图像之间的初始激活（初始网络的倒数第二层的响应）然而，这种比较将真实图像和生成的图像的激活近似为高斯分布，计算它们的均值和协方差，但是它们太粗糙而无法捕捉细微的细节。这两种方法都依赖于ImageNet预训练的Inception网络，这对于其他数据集（如人脸和生物医学成像）来说并非理想。总的来说，IS和FID是评估训练进展情况的有用方法，但它们不能保证与实际任务的性能相关。正如我们在第5节中讨论的那样，与我们的措施不同，这些措施不足以精细地分辨最先进的GAN模型(see SNGAN vs WPGAN-GP(10M) in Table 2 forexample)</p>
