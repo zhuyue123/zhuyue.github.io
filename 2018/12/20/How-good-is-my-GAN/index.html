@@ -24,7 +24,7 @@
 <meta property="og:image" content="https://user-images.githubusercontent.com/44546944/50210776-f968cb00-03b1-11e9-8527-755ff265ff61.PNG">
 <meta property="og:image" content="https://user-images.githubusercontent.com/44546944/50210995-7c8a2100-03b2-11e9-9f74-b36b1c4309be.PNG">
 <meta property="og:image" content="https://user-images.githubusercontent.com/44546944/50212254-8b260780-03b5-11e9-9d25-4ec1c91e9621.PNG">
-<meta property="og:updated_time" content="2018-12-20T03:30:16.247Z">
+<meta property="og:updated_time" content="2018-12-20T03:33:37.987Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ZhuYue&#39;s Home">
 <meta name="twitter:description" content="title: How good is my GANdate: 2018-11-29 15:54:22tags: gan cover_picture: https://user-images.githubusercontent.com/44546944/50212937-371c2280-03b7-11e9-9faf-b2229773c20a.jpgHow good is my GAN 学习笔记&amp;">
@@ -156,7 +156,7 @@ ga('send', 'pageview');
 <h3 id="2-1-Inception-score"><a href="#2-1-Inception-score" class="headerlink" title="2.1 Inception score"></a><strong>2.1 Inception score</strong></h3><p>&emsp;&emsp;评估GANs最常用的方法之一是Inception score。它使用一个初始化网络[50]在ImageNet上预先训练来计算生成的图像的逻辑。分数是由以下公式给出：</p>
 <center><img src="https://user-images.githubusercontent.com/44546944/49487913-760e8c00-f87f-11e8-89fe-58154aac6ded.PNG" alt="2"></center>
 
-<p>其中X是从学习到的生成器$P_g$分布中采样得到的生成图像，E是生成图像集的期望，$ D_{KL} $是条件类分布$ p(y|x) $和边缘分布$ p(y) = E_{x\sim p_g}[p(y|x)] $之间的$ KL $散度根据定义，初始分数根本不考虑真实图像，因此无法测量生成器的近似程度如何。这个分数仅限与测量生成图像的多样性。正如[8]中指出的，它的一些其他限制是，对Inception网络权重的小变化非常的敏感，并且分数差异很大。</p>
+<p>其中X是从学习到的生成器$ P_g $分布中采样得到的生成图像，E是生成图像集的期望，$ D_{KL} $是条件类分布$ p(y|x) $和边缘分布$ p(y) = E_{x\sim p_g}[p(y|x)] $之间的$ KL $散度根据定义，初始分数根本不考虑真实图像，因此无法测量生成器的近似程度如何。这个分数仅限与测量生成图像的多样性。正如[8]中指出的，它的一些其他限制是，对Inception网络权重的小变化非常的敏感，并且分数差异很大。</p>
 <h3 id="2-2-Frechet-Inception-distance"><a href="#2-2-Frechet-Inception-distance" class="headerlink" title="2.2 Frechet Inception distance"></a><strong>2.2 Frechet Inception distance</strong></h3><p>&emsp;&emsp;最近提出的FID[22]比较的是真实图像和生成图像间的 Inception 激活值（Inception 网络中倒数第二层的响应）这两个分布都被建模为多维高斯，由它们各自的均值和协方差参数化。两个高斯分布之间的距离测度定义为:<br>$$ d^2((m_r,C_r),(m_g,C_g)) = {||m_r-m_g||}^2+Tr(C_r+C_g-2{C_rC_g}^{\frac{1}{2}})………….(2)  $$<br>其中$ （m_r,C_r）,(m_g,c_g)                    $分别表示真实图像分布和生成图像分布。FID与IS成负相关，来自前面讨论过的问题。</p>
 <p>&emsp;&emsp;这两种基于Inception测量方法，不能将图像质量与图像多样性区分开来。例如，低IS或高的FID值可能是因为生成的图像要么不真实(图像质量低)，要么彼此太相似(多样性低)，无法分析原因。相比之下，我们的测量可以区分出生成的图像在什么时候变得不那么多样化，什么时候图像质量变差。</p>
 <h3 id="2-3-其他评价方法"><a href="#2-3-其他评价方法" class="headerlink" title="2.3 其他评价方法"></a><strong>2.3 其他评价方法</strong></h3><p>&emsp;&emsp;切瓦瑟斯坦距离（SWD）[25]被用来评估高分辨率GANs。它是从真实图像和生成图像的拉普拉斯金字塔表示中提取到局部图像块并计算出的多尺度统计相似性。每幅图像中每层拉普拉斯金字塔一共提取128个7*7个局部斑块。虽然SWD是一种有效的近似，使用随机投影[44]，真实图像和生成图像之间的Wasserstein-1距离，但它在比较各种GAN模型时的效用是有限的，并非所有GAN模型都能产生高分辨率图像（ 见第5节中的评估）。</p>
@@ -202,9 +202,7 @@ ga('send', 'pageview');
 <p>&emsp;&emsp;在CIFAR10的例子中，我们观察到GAN-train精度在生成图像的15-20k左右达到饱和，即使对于最好的模型SNGAN也是如此。（看图４）DCGAN比SNGAN弱，GAN-train由于多样性相对较差，在5k左右图像饱和。图4b显示，在CIFAR100上，除了25k图像外，所有模型的GAN-train精度没有增加。SNGAN生成的5k图像的多样性与真实图像的数量相当;参见图4b中的蓝色和橙色图。WGAN-GP (10M)的多样性非常低，超过5k生成的图像。WGAN-GP (2.5M)和DCGAN在CIFAR100上表现不佳，相对于其他方法没有竞争力。</p>
 <center><img src="https://user-images.githubusercontent.com/44546944/50210776-f968cb00-03b1-11e9-8527-755ff265ff61.PNG" alt="7"></center>
 
-<p>图4:改变生成的图像集大小对GAN－train精度的影响。为了便于比较，我们还用蓝色显示了改变实际图像训练数据集大小的结果。(pdf格式浏览效果最佳。)</p>
-<center><img src="https://user-images.githubusercontent.com/44546944/50210995-7c8a2100-03b2-11e9-9f74-b36b1c4309be.PNG" alt="8"></center>
-
+<p>图4:改变生成的图像集大小对GAN－train精度的影响。为了便于比较，我们还用蓝色显示了改变实际图像训练数据集大小的结果。(pdf格式浏览效果最佳。)<br><img src="https://user-images.githubusercontent.com/44546944/50210995-7c8a2100-03b2-11e9-9f74-b36b1c4309be.PNG" alt="8"></p>
 <center>图５使用真实和SNGAN生成的图像组合训练分类器的影响。</center>
 
 <h3 id="5-４-GAN数据增强"><a href="#5-４-GAN数据增强" class="headerlink" title="5.４ GAN数据增强"></a><strong>5.４ GAN数据增强</strong></h3><p>&emsp;&emsp;我们分析了GANs在数据增强和生成额外训练样本方面的效用，其中GAN为在两种设置下使用性能最好的GAN模型(SNGAN)。首先，在图5a和5b中，我们展示了使用来自训练集的真实图像和分别在CIFAR10和CIFAR100数据集上GAN生成图像的组合的训练集，对分类器的影响。在这种情况下，使用原始训练集的所有图像训练模型SNGAN。 从这两个图中，我们观察到向50k的GAN生成图像中添加2.5k或5k真实像提高了只有真实时所对应的准确度。然而，添加50k的真实图像并没有带来任何明显的改进，事实上，CIFAR100稍微降低了性能(图5b)。这可能是由于缺乏图像的多样性。鉴于生成的图像是由从整个CIFAR10(或CIFAR100)训练数据集学习到的GAN生成的，本实验提供了另一个关于生成图像数据集多样性的视角。例如，将2.5k的真实图像与50k生成的图像相加，测试精度要优于仅对5k真实图像进行训练的模型。因此，我们可以得出GAN模型生成的图像比2.5k的真实图像具有更多的多样性。但是，假设生成的图像与原始数据一样真实。在实践中，生成的图像往往缺乏真实感，生成的图像比真实感更加丰富。这些意见与第5.3节的意见一致，即SNGAN生成的图像至少具有5k随机采样的真实图像的多样性<br>。</p>
@@ -216,7 +214,7 @@ ga('send', 'pageview');
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年12月20日 11:30</p>
+        <p>最后更新： 2018年12月20日 11:33</p>
         <p>原始链接： <a class="post-url" href="/2018/12/20/How-good-is-my-GAN/" title="">http://yoursite.com/2018/12/20/How-good-is-my-GAN/</a></p>
         <footer>
             <a href="http://yoursite.com">
