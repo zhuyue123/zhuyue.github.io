@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="utf-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>ZhuYue&#39;s Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -24,7 +24,7 @@
 <meta property="og:image" content="https://user-images.githubusercontent.com/44546944/50210776-f968cb00-03b1-11e9-8527-755ff265ff61.PNG">
 <meta property="og:image" content="https://user-images.githubusercontent.com/44546944/50210995-7c8a2100-03b2-11e9-9f74-b36b1c4309be.PNG">
 <meta property="og:image" content="https://user-images.githubusercontent.com/44546944/50212254-8b260780-03b5-11e9-9d25-4ec1c91e9621.PNG">
-<meta property="og:updated_time" content="2018-12-20T03:22:17.004Z">
+<meta property="og:updated_time" content="2018-12-20T03:30:16.247Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ZhuYue&#39;s Home">
 <meta name="twitter:description" content="title: How good is my GANdate: 2018-11-29 15:54:22tags: gan cover_picture: https://user-images.githubusercontent.com/44546944/50212937-371c2280-03b7-11e9-9faf-b2229773c20a.jpgHow good is my GAN 学习笔记&amp;">
@@ -48,7 +48,7 @@ ga('create', 'true', 'auto');
 ga('send', 'pageview');
 
 </script>
-<!-- End Google Analytics -->
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
   
@@ -57,7 +57,7 @@ ga('send', 'pageview');
 </head>
 </html>
 <body>
-  <div id="container">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
       <header id="header">
     <div id="banner"></div>
     <div id="header-outer">
@@ -156,7 +156,7 @@ ga('send', 'pageview');
 <h3 id="2-1-Inception-score"><a href="#2-1-Inception-score" class="headerlink" title="2.1 Inception score"></a><strong>2.1 Inception score</strong></h3><p>&emsp;&emsp;评估GANs最常用的方法之一是Inception score。它使用一个初始化网络[50]在ImageNet上预先训练来计算生成的图像的逻辑。分数是由以下公式给出：</p>
 <center><img src="https://user-images.githubusercontent.com/44546944/49487913-760e8c00-f87f-11e8-89fe-58154aac6ded.PNG" alt="2"></center>
 
-<p>其中X是从学习到的生成器$ P_g $分布中采样得到的生成图像，E是生成图像集的期望，$ D_{KL} $是条件类分布$ p(y|x) $和边缘分布$ p(y) = E_{x\sim p_g}[p(y|x)] $之间的$ KL $散度根据定义，初始分数根本不考虑真实图像，因此无法测量生成器的近似程度如何。这个分数仅限与测量生成图像的多样性。正如[8]中指出的，它的一些其他限制是，对Inception网络权重的小变化非常的敏感，并且分数差异很大。</p>
+<p>其中X是从学习到的生成器$P_g$分布中采样得到的生成图像，E是生成图像集的期望，$ D_{KL} $是条件类分布$ p(y|x) $和边缘分布$ p(y) = E_{x\sim p_g}[p(y|x)] $之间的$ KL $散度根据定义，初始分数根本不考虑真实图像，因此无法测量生成器的近似程度如何。这个分数仅限与测量生成图像的多样性。正如[8]中指出的，它的一些其他限制是，对Inception网络权重的小变化非常的敏感，并且分数差异很大。</p>
 <h3 id="2-2-Frechet-Inception-distance"><a href="#2-2-Frechet-Inception-distance" class="headerlink" title="2.2 Frechet Inception distance"></a><strong>2.2 Frechet Inception distance</strong></h3><p>&emsp;&emsp;最近提出的FID[22]比较的是真实图像和生成图像间的 Inception 激活值（Inception 网络中倒数第二层的响应）这两个分布都被建模为多维高斯，由它们各自的均值和协方差参数化。两个高斯分布之间的距离测度定义为:<br>$$ d^2((m_r,C_r),(m_g,C_g)) = {||m_r-m_g||}^2+Tr(C_r+C_g-2{C_rC_g}^{\frac{1}{2}})………….(2)  $$<br>其中$ （m_r,C_r）,(m_g,c_g)                    $分别表示真实图像分布和生成图像分布。FID与IS成负相关，来自前面讨论过的问题。</p>
 <p>&emsp;&emsp;这两种基于Inception测量方法，不能将图像质量与图像多样性区分开来。例如，低IS或高的FID值可能是因为生成的图像要么不真实(图像质量低)，要么彼此太相似(多样性低)，无法分析原因。相比之下，我们的测量可以区分出生成的图像在什么时候变得不那么多样化，什么时候图像质量变差。</p>
 <h3 id="2-3-其他评价方法"><a href="#2-3-其他评价方法" class="headerlink" title="2.3 其他评价方法"></a><strong>2.3 其他评价方法</strong></h3><p>&emsp;&emsp;切瓦瑟斯坦距离（SWD）[25]被用来评估高分辨率GANs。它是从真实图像和生成图像的拉普拉斯金字塔表示中提取到局部图像块并计算出的多尺度统计相似性。每幅图像中每层拉普拉斯金字塔一共提取128个7*7个局部斑块。虽然SWD是一种有效的近似，使用随机投影[44]，真实图像和生成图像之间的Wasserstein-1距离，但它在比较各种GAN模型时的效用是有限的，并非所有GAN模型都能产生高分辨率图像（ 见第5节中的评估）。</p>
@@ -216,7 +216,7 @@ ga('send', 'pageview');
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年12月20日 11:22</p>
+        <p>最后更新： 2018年12月20日 11:30</p>
         <p>原始链接： <a class="post-url" href="/2018/12/20/How-good-is-my-GAN/" title="">http://yoursite.com/2018/12/20/How-good-is-my-GAN/</a></p>
         <footer>
             <a href="http://yoursite.com">
@@ -484,6 +484,6 @@ ga('send', 'pageview');
      $(".article-entry p img").popImg();
   </script>
 
-  </div>
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
