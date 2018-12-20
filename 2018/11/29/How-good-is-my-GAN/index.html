@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="How good is my GAN 学习笔记&amp;emsp;&amp;emsp;GAN是当今最流行的图像生成方法之一。以前的令人印象深刻的结果都是通过目视检查得到证实的，直到最近才出现了一些定量标准。作者认为现有的办法是不够的，需要与你目前的任务相适应才好。在本篇文章中作者提出了两个基于图像分类网络的两个测量指标——GAN-train和GAN-test，这些分别近似GAN的召回率（多样性）和精度（图像的">
+<meta name="description" content="How good is my GAN 学习笔记&amp;emsp;&amp;emsp;GAN是当今最流行的图像生成方法之一。以前的令人印象深刻的结果都是通过目视检查得到证实的，直到最近才出现了一些定量标准。作者认为现有的办法是不够的，需要与你目前的任务相适应才好。在本篇文章中作者提出了两个基于图像分类网络的两个测量指标——GAN-train和GAN-test，这些分别近似GAN的召回率（多样性）和精度（图像的质量">
 <meta name="keywords" content="gan">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How good is my GAN">
 <meta property="og:url" content="http://yoursite.com/2018/11/29/How-good-is-my-GAN/index.html">
 <meta property="og:site_name" content="ZhuYue&#39;s Home">
-<meta property="og:description" content="How good is my GAN 学习笔记&amp;emsp;&amp;emsp;GAN是当今最流行的图像生成方法之一。以前的令人印象深刻的结果都是通过目视检查得到证实的，直到最近才出现了一些定量标准。作者认为现有的办法是不够的，需要与你目前的任务相适应才好。在本篇文章中作者提出了两个基于图像分类网络的两个测量指标——GAN-train和GAN-test，这些分别近似GAN的召回率（多样性）和精度（图像的">
+<meta property="og:description" content="How good is my GAN 学习笔记&amp;emsp;&amp;emsp;GAN是当今最流行的图像生成方法之一。以前的令人印象深刻的结果都是通过目视检查得到证实的，直到最近才出现了一些定量标准。作者认为现有的办法是不够的，需要与你目前的任务相适应才好。在本篇文章中作者提出了两个基于图像分类网络的两个测量指标——GAN-train和GAN-test，这些分别近似GAN的召回率（多样性）和精度（图像的质量">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://user-images.githubusercontent.com/44546944/50210995-7c8a2100-03b2-11e9-9f74-b36b1c4309be.PNG">
-<meta property="og:updated_time" content="2018-12-20T04:30:38.426Z">
+<meta property="og:updated_time" content="2018-12-20T08:24:11.882Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How good is my GAN">
-<meta name="twitter:description" content="How good is my GAN 学习笔记&amp;emsp;&amp;emsp;GAN是当今最流行的图像生成方法之一。以前的令人印象深刻的结果都是通过目视检查得到证实的，直到最近才出现了一些定量标准。作者认为现有的办法是不够的，需要与你目前的任务相适应才好。在本篇文章中作者提出了两个基于图像分类网络的两个测量指标——GAN-train和GAN-test，这些分别近似GAN的召回率（多样性）和精度（图像的">
+<meta name="twitter:description" content="How good is my GAN 学习笔记&amp;emsp;&amp;emsp;GAN是当今最流行的图像生成方法之一。以前的令人印象深刻的结果都是通过目视检查得到证实的，直到最近才出现了一些定量标准。作者认为现有的办法是不够的，需要与你目前的任务相适应才好。在本篇文章中作者提出了两个基于图像分类网络的两个测量指标——GAN-train和GAN-test，这些分别近似GAN的召回率（多样性）和精度（图像的质量">
 <meta name="twitter:image" content="https://user-images.githubusercontent.com/44546944/50210995-7c8a2100-03b2-11e9-9f74-b36b1c4309be.PNG">
 
 
@@ -333,12 +333,10 @@
       
 
       
-        <p><script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script></p>
-<h1 id="How-good-is-my-GAN-学习笔记"><a href="#How-good-is-my-GAN-学习笔记" class="headerlink" title="How good is my GAN 学习笔记"></a><strong>How good is my GAN 学习笔记</strong></h1><p>&emsp;&emsp;GAN是当今最流行的图像生成方法之一。以前的令人印象深刻的结果都是通过目视检查得到证实的，直到最近才出现了一些定量标准。作者认为现有的办法是不够的，需要与你目前的任务相适应才好。在本篇文章中作者提出了两个基于图像分类网络的两个测量指标——GAN-train和GAN-test，这些分别近似GAN的召回率（多样性）和精度（图像的质量）。我们基于这两个指标评估了一些最近的GAN方法，并证明了性能的明显差异。此外，我们还观察到，数据集的难度从CIFAR10/CIFAR100到ImageNet的增加，和GANs的质量呈反比关系，这从我们的测量数据中可以明显看出。</p>
+        <h1 id="How-good-is-my-GAN-学习笔记"><a href="#How-good-is-my-GAN-学习笔记" class="headerlink" title="How good is my GAN 学习笔记"></a><strong>How good is my GAN 学习笔记</strong></h1><p>&emsp;&emsp;GAN是当今最流行的图像生成方法之一。以前的令人印象深刻的结果都是通过目视检查得到证实的，直到最近才出现了一些定量标准。作者认为现有的办法是不够的，需要与你目前的任务相适应才好。在本篇文章中作者提出了两个基于图像分类网络的两个测量指标——GAN-train和GAN-test，这些分别近似GAN的召回率（多样性）和精度（图像的质量）。我们基于这两个指标评估了一些最近的GAN方法，并证明了性能的明显差异。此外，我们还观察到，数据集的难度从CIFAR10/CIFAR100到ImageNet的增加，和GANs的质量呈反比关系，这从我们的测量数据中可以明显看出。</p>
 <h2 id="1-引言"><a href="#1-引言" class="headerlink" title="1 引言"></a><strong>1 引言</strong></h2><p>&emsp;&emsp;GAN是由一对相互竞争的神经网络（生成器和鉴别器）组成的深度神经网络结构。该模型通过交替优化两个目标函数来训练。生成器G的任务是学习生成与真实图像相似的样本，鉴别器D的任务是学习更好地辨别真实和虚假数据。这种模式具有巨大的潜力，因为它可以学习生成任何数据分布。这种方法已经在一些计算机视觉问题上得到了成功的应用，比如文本到图像转换和风格迁移，超分辨率以及逼真自然图像生成。</p>
 <p>&emsp;&emsp;自从GAN提出以来，这几年提出了许多GAN的变体，比如提高生成图像质量的，稳定训练过程的。GANs也经过了修改，可以根据附加信息(例如类标签)生成给定类的图像。有许多方法可以做到这一点:从将标签y连接到生成器输入z或中间特征映射，到使用条件批处理规范化，以及使用辅助分类器来增加鉴别器。由于文献中经常提出几个这样的变体，一个关键问题是如何评价这些模型，并将其相互比较。</p>
-<center>![1](https://user-images.githubusercontent.com/44546944/49210164-53035880-f3f7-11e8-8bff-c5b2642c7e77.PNG)</center>
+<center> ![1](https://user-images.githubusercontent.com/44546944/49210164-53035880-f3f7-11e8-8bff-c5b2642c7e77.PNG) </center>
 
 <p><strong>图1</strong> SNGAN模型生成的逼真图像，与真实图像相比，这些图像很难以主观评估。我们新的基于图像分类精度的测量方法(这里显示了GAN-train)克服了这个问题，显示了真实图像和生成图像之间的明显差异。</p>
 <p>&emsp;&emsp;GANs生成的图像的评估和比较具有挑战性。这在一定程度上是由于缺乏显式的可能性度量，而显式的可能性度量在可比较的概率模型中很常见。因此，对于GANs合成的图像，以往的许多工作仅仅依靠主观的视觉评价。从图1中SNGAN生成的样本图像可以看出，不可能通过主观评价来准确判断其质量。近两年的工作已经开始通过定量评价GAN的方法来应对这一挑战。</p>
@@ -349,11 +347,11 @@
 <p>&emsp;&emsp;正如我们在第5节和补充材料和技术报告[5]附录中广泛的实验结果所显示的，与以前讨论的所有测量方法相比，这些测量方法在评估GAN方面提供了更多的信息，包括人们研究没有结论性的情况。特别是，我们评估了两种最先进的GAN模型:WGAN-GP[20]和SNGAN[36]，以及其他生成模型[45,47]，为了提供基本比较。在MNIST[30]、CIFAR10、CIFAR100[28]和ImageNet[14]数据集上评价图像分类的性能。实验结果表明，随着数据集复杂度的增加，GAN生成的图像的质量明显下降。</p>
 <h2 id="2-相关工作"><a href="#2-相关工作" class="headerlink" title="2 相关工作"></a><strong>2 相关工作</strong></h2><p>&emsp;&emsp;我们现有的定量评估GANs的度量基于Inception网络的分数，Is和FID，一个基于Wasserstein距离的测度，精度和召回率分数，以及一种数据扩充的技术。</p>
 <h3 id="2-1-Inception-score"><a href="#2-1-Inception-score" class="headerlink" title="2.1 Inception score"></a><strong>2.1 Inception score</strong></h3><p>&emsp;&emsp;评估GANs最常用的方法之一是Inception score。它使用一个初始化网络[50]在ImageNet上预先训练来计算生成的图像的逻辑。分数是由以下公式给出：</p>
-<center>![2](https://user-images.githubusercontent.com/44546944/49487913-760e8c00-f87f-11e8-89fe-58154aac6ded.PNG)</center>
+<center> ![2](https://user-images.githubusercontent.com/44546944/49487913-760e8c00-f87f-11e8-89fe-58154aac6ded.PNG) </center>
 
 <p>其中X是从学习到的生成器$ P_g $分布中采样得到的生成图像，E是生成图像集的期望，$ D_{KL} $是条件类分布$ p(y|x) $和边缘分布$ p(y) = E_{x\sim p_g}[p(y|x)] $之间的$ KL $散度根据定义，初始分数根本不考虑真实图像，因此无法测量生成器的近似程度如何。这个分数仅限与测量生成图像的多样性。正如[8]中指出的，它的一些其他限制是，对Inception网络权重的小变化非常的敏感，并且分数差异很大。</p>
 <h3 id="2-2-Frechet-Inception-distance"><a href="#2-2-Frechet-Inception-distance" class="headerlink" title="2.2 Frechet Inception distance"></a><strong>2.2 Frechet Inception distance</strong></h3><p>&emsp;&emsp;最近提出的FID[22]比较的是真实图像和生成图像间的 Inception 激活值（Inception 网络中倒数第二层的响应）这两个分布都被建模为多维高斯，由它们各自的均值和协方差参数化。两个高斯分布之间的距离测度定义为:</p>
-<script type="math/tex; mode=display">d^2((m_r,C_r),(m_g,C_g)) = {||m_r-m_g||}^2+Tr(C_r+C_g-2{C_rC_g}^{\frac{1}{2}}).............(2)</script><p>其中\[（m_r,C_r）,(m_g,c_g)\]分别表示真实图像分布和生成图像分布。FID与IS成负相关，来自前面讨论过的问题。</p>
+<script type="math/tex; mode=display">d^2((m_r,C_r),(m_g,C_g)) = {||m_r-m_g||}^2+Tr(C_r+C_g-2{C_rC_g}^{\frac{1}{2}}).............(2)</script><p>其中$（m_r,C_r）,(m_g,c_g) $分别表示真实图像分布和生成图像分布。FID与IS成负相关，来自前面讨论过的问题。</p>
 <p>&emsp;&emsp;这两种基于Inception测量方法，不能将图像质量与图像多样性区分开来。例如，低IS或高的FID值可能是因为生成的图像要么不真实(图像质量低)，要么彼此太相似(多样性低)，无法分析原因。相比之下，我们的测量可以区分出生成的图像在什么时候变得不那么多样化，什么时候图像质量变差。</p>
 <h3 id="2-3-其他评价方法"><a href="#2-3-其他评价方法" class="headerlink" title="2.3 其他评价方法"></a><strong>2.3 其他评价方法</strong></h3><p>&emsp;&emsp;切瓦瑟斯坦距离（SWD）[25]被用来评估高分辨率GANs。它是从真实图像和生成图像的拉普拉斯金字塔表示中提取到局部图像块并计算出的多尺度统计相似性。每幅图像中每层拉普拉斯金字塔一共提取128个7*7个局部斑块。虽然SWD是一种有效的近似，使用随机投影[44]，真实图像和生成图像之间的Wasserstein-1距离，但它在比较各种GAN模型时的效用是有限的，并非所有GAN模型都能产生高分辨率图像（ 见第5节中的评估）。</p>
 <p>&emsp;&emsp;在GANs环境下，通过构造一个综合数据流形，引入了精度和召回率测度[32]。通过找到它到流行最近点的距离，使得计算一个图像样本（生成或是真实的）到流形距离成为可能。在这个合成设置中，精度被定义为生成样本的分数，其到流形的距离低于某个阈值。另一方面，召回率是通过考虑一组测试样本来计算的。首先，通过反转发生器G，每个测试样本X的潜在表示Z由梯度下降估计。然后，召回率是通过L2到G（z）的距离低于阈值的测试样本的分数.高召回率等价于GAN捕捉大部分的流行，高精度意味着生成的样本接近流形。但是由于数据流形是未知的，他们对真实图像是不切实际的，而且它们的使用仅限于对合成数据的评估。</p>
