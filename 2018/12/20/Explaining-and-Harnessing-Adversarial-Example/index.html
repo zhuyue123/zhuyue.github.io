@@ -125,7 +125,7 @@
 <meta property="og:site_name" content="ZhuYue&#39;s Home">
 <meta property="og:description" content="Explaining and Harnessing Adversarial Example学习笔记&amp;emsp;&amp;emsp;包括神经网络在内的一些机器学习模型，总会对对抗样本进行错误分类。所谓的对抗样本就是将一个非常小但是人为的最坏的扰动加到数据集的样本中。这样，受扰动得输入会导致模型输出不正确得答案，并且具有很高得置信度。早期对这一现象的解释集中在非线性和过拟合上。相反，我们认为神经网络易受对抗性">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-20T12:24:55.402Z">
+<meta property="og:updated_time" content="2018-12-20T12:27:41.896Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Explaining and Harnessing Adversarial Example">
 <meta name="twitter:description" content="Explaining and Harnessing Adversarial Example学习笔记&amp;emsp;&amp;emsp;包括神经网络在内的一些机器学习模型，总会对对抗样本进行错误分类。所谓的对抗样本就是将一个非常小但是人为的最坏的扰动加到数据集的样本中。这样，受扰动得输入会导致模型输出不正确得答案，并且具有很高得置信度。早期对这一现象的解释集中在非线性和过拟合上。相反，我们认为神经网络易受对抗性">
@@ -398,7 +398,7 @@
       
 
       
-        <h1 id="Explaining-and-Harnessing-Adversarial-Example学习笔记"><a href="#Explaining-and-Harnessing-Adversarial-Example学习笔记" class="headerlink" title="Explaining and Harnessing Adversarial Example学习笔记"></a><strong>Explaining and Harnessing Adversarial Example学习笔记</strong></h1><p>&emsp;&emsp;包括神经网络在内的一些机器学习模型，总会对对抗样本进行错误分类。所谓的对抗样本就是将一个非常小但是人为的最坏的扰动加到数据集的样本中。这样，受扰动得输入会导致模型输出不正确得答案，并且具有很高得置信度。早期对这一现象的解释集中在非线性和过拟合上。相反，我们认为神经网络易受对抗性扰动的主要原因是其线性特性。这一解释得到了新的定量结果的支持，同时也首次解释了最有趣的事实：它们在架构和训练集之间的广泛性。此外，该观点还提供了一种生成对抗性示例的简单而快速的方法。该方法为对抗训练提供了实例，减少了MNIST数据集上maxout网络的测试集误差。</p>
+        <h1 id="Explaining-and-Harnessing-Adversarial-Example学习笔记"><a href="#Explaining-and-Harnessing-Adversarial-Example学习笔记" class="headerlink" title="Explaining and Harnessing Adversarial Example学习笔记"></a><strong>Explaining and Harnessing Adversarial Example学习笔记</strong></h1><p>&emsp;&emsp;包括神经网络在内的一些机器学习模型，总会对对抗样本进行错误分类。所谓的对抗样本就是将一个非常小但是人为的最坏的扰动加到数据集的样本中。这样，受扰动得输入会导致模型输出不正确得答案，并且具有很高得置信度。早期对这一现象的解释集中在非线性和过拟合上。相反，我们认为神经网络易受对抗性扰动的主要原因是其线性特性。这一解释得到了新的定量结果的支持，同时也首次解释了最有趣的事实：它们在架构和训练集之间的广泛性。此外，该观点还提供了一种生成对抗性示例的简单而快速的方法。该方法为对抗训练提供了实例，减少了MNIST数据集上maxout网络的测试集误差。<br><a id="more"></a></p>
 <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a><strong>引言</strong></h2><p>&emsp;&emsp;Szegedy等人(2014b)有一个有趣的发现：一些机器学习模型，包括最先进的神经网络，很容易受到对抗样本的攻击。也就是说，这些机器学习模型对示例进行了错误分类，这些示例与从数据分布中获得的正确分类示例仅略有不同。在许多情况下，在训练数据的不同子集上训练的具有各种种类不同结构的模型会对同一个对抗样本进行错误分类。这表明对抗性样本暴露了我们训练算法中的基本盲点。<br>&emsp;&emsp;这些对抗性的例子的原因是一个谜，推测性的解释认为这是由于深层神经网络的极端非线性，可能与模型平均不足和纯监督学习问题的正则化不足有关。我们证明这些推测性假设是不必要的。高维空间中的线性行为足以造成对抗性样本。这种观点使我们能够设计出一种快速生成对抗性例子的方法，使对抗性训练具有实用性。我们证明，对抗训练可以提供额外的正规化效益，而不仅仅是使用dropout提供的(Srivastava et al.， 2014)。</p>
 
       
