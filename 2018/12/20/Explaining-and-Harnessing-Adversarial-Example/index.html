@@ -125,7 +125,7 @@
 <meta property="og:site_name" content="ZhuYue&#39;s Home">
 <meta property="og:description" content="Explaining and Harnessing Adversarial Example学习笔记&amp;emsp;&amp;emsp;包括神经网络在内的一些机器学习模型，总会对对抗样本进行错误分类。所谓的对抗样本就是将一个非常小但是人为的最坏的扰动加到数据集的样本中。这样，受扰动得输入会导致模型输出不正确得答案，并且具有很高得置信度。早期对这一现象的解释集中在非线性和过拟合上。相反，我们认为神经网络易受对抗性">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-20T12:27:41.896Z">
+<meta property="og:updated_time" content="2018-12-21T03:01:13.171Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Explaining and Harnessing Adversarial Example">
 <meta name="twitter:description" content="Explaining and Harnessing Adversarial Example学习笔记&amp;emsp;&amp;emsp;包括神经网络在内的一些机器学习模型，总会对对抗样本进行错误分类。所谓的对抗样本就是将一个非常小但是人为的最坏的扰动加到数据集的样本中。这样，受扰动得输入会导致模型输出不正确得答案，并且具有很高得置信度。早期对这一现象的解释集中在非线性和过拟合上。相反，我们认为神经网络易受对抗性">
@@ -373,7 +373,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  593
+                  1.4k
                 </span>
               
 
@@ -399,7 +399,13 @@
 
       
         <h1 id="Explaining-and-Harnessing-Adversarial-Example学习笔记"><a href="#Explaining-and-Harnessing-Adversarial-Example学习笔记" class="headerlink" title="Explaining and Harnessing Adversarial Example学习笔记"></a><strong>Explaining and Harnessing Adversarial Example学习笔记</strong></h1><p>&emsp;&emsp;包括神经网络在内的一些机器学习模型，总会对对抗样本进行错误分类。所谓的对抗样本就是将一个非常小但是人为的最坏的扰动加到数据集的样本中。这样，受扰动得输入会导致模型输出不正确得答案，并且具有很高得置信度。早期对这一现象的解释集中在非线性和过拟合上。相反，我们认为神经网络易受对抗性扰动的主要原因是其线性特性。这一解释得到了新的定量结果的支持，同时也首次解释了最有趣的事实：它们在架构和训练集之间的广泛性。此外，该观点还提供了一种生成对抗性示例的简单而快速的方法。该方法为对抗训练提供了实例，减少了MNIST数据集上maxout网络的测试集误差。<br><a id="more"></a></p>
-<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a><strong>引言</strong></h2><p>&emsp;&emsp;Szegedy等人(2014b)有一个有趣的发现：一些机器学习模型，包括最先进的神经网络，很容易受到对抗样本的攻击。也就是说，这些机器学习模型对示例进行了错误分类，这些示例与从数据分布中获得的正确分类示例仅略有不同。在许多情况下，在训练数据的不同子集上训练的具有各种种类不同结构的模型会对同一个对抗样本进行错误分类。这表明对抗性样本暴露了我们训练算法中的基本盲点。<br>&emsp;&emsp;这些对抗性的例子的原因是一个谜，推测性的解释认为这是由于深层神经网络的极端非线性，可能与模型平均不足和纯监督学习问题的正则化不足有关。我们证明这些推测性假设是不必要的。高维空间中的线性行为足以造成对抗性样本。这种观点使我们能够设计出一种快速生成对抗性例子的方法，使对抗性训练具有实用性。我们证明，对抗训练可以提供额外的正规化效益，而不仅仅是使用dropout提供的(Srivastava et al.， 2014)。</p>
+<h2 id="1-引言"><a href="#1-引言" class="headerlink" title="1 引言"></a><strong>1 引言</strong></h2><p>&emsp;&emsp;Szegedy等人(2014b)有一个有趣的发现：一些机器学习模型，包括最先进的神经网络，很容易受到对抗样本的攻击。也就是说，这些机器学习模型对示例进行了错误分类，这些示例与从数据分布中获得的正确分类示例仅略有不同。在许多情况下，在训练数据的不同子集上训练的具有各种种类不同结构的模型会对同一个对抗样本进行错误分类。这表明对抗性样本暴露了我们训练算法中的基本盲点。</p>
+<p>&emsp;&emsp;这些对抗性的例子的原因是一个谜，推测性的解释认为这是由于深层神经网络的极端非线性，可能与模型平均不足和纯监督学习问题的正则化不足有关。我们证明这些推测性假设是不必要的。高维空间中的线性行为足以造成对抗性样本。这种观点使我们能够设计出一种快速生成对抗性例子的方法，使对抗性训练具有实用性。我们证明，对抗训练可以提供额外的正规化效益，而不仅仅是使用dropout提供的(Srivastava et al.， 2014)。一般的正则化策略，如中途退出、预训练和模型平均，并不能显著降低模型在对抗性例子中的脆弱性，但向非线性模型族(如RBF网络)转变可以做到这一点。我们的解释表明，设计模型之间存在基本的张量，这些模型由于其线性而易于训练，并且设计使用非线性效应来抵抗对抗性扰动的模型。从长远来看，可能通过设计更强大的优化方法来成功地训练更多的非线性模型来避免这种权衡。</p>
+<h2 id="2-相关工作"><a href="#2-相关工作" class="headerlink" title="2 相关工作"></a><strong>2 相关工作</strong></h2><p>&emsp;&emsp;Szegedy等人(2014b)展示了神经网络和相关模型的各种有趣特性。与本文最相关的包括：</p>
+<p>&emsp;&emsp;1）Box-constrained L-BFGS能够可靠地找到对抗性的例子<br>&emsp;&emsp;2）在一些数据集上，如ImageNet，对抗样本与原始样本子非常接近，人眼无法区分它们之间的差异。<br>&emsp;&emsp;3）相同的对抗性示例常常被具有不同体系结构的各种分类器错误分类，或者在不同训练集子集上训练。<br>&emsp;&emsp;4）浅层softmax回归模型也容易受到对抗性样本的影响。<br>&emsp;&emsp;5）对抗样本的训练可以使模型正则化。——然而，由于在内部循环中需要昂贵的约束优化，这在当时并不实用。</p>
+<p>&emsp;&emsp;这些结果表明，基于现代机器学习技术的分类器，即使是那些在测试集上获得优异性能的分类器，也没有学习确定正确输出标签的真正基础概念。相反，这些算法已经建造了一个Potemkin village，他的意思是在自然图像中工作的非常好，但是当访问数据分中概率不高的空间点时，就会暴露为假。这尤其令人失望，因为计算机视觉中流行的一种方法是使用卷积网络特征作为欧几里得距离近似感知距离的空间。如果具有不可测量的小感知距离的图像对应于网络中表示为完全不同的类，那么这种相似性显然是有缺陷的。尽管线性分类器也存在同样的问题，但这些结果通常被解释为深度网络的一个缺陷。我们把发现这一缺陷看作是改正它的机会。事实上,顾,Rigazio(2014)和Chalupka等人(2014)已经开始了设计抵抗对抗性扰动的模型的第一步，尽管还没有一个模型能够成功地做到这一点，并且模型同时保持在没有对抗样本时输入的准确性。</p>
+<h2 id="3-对抗样本的线性解释"><a href="#3-对抗样本的线性解释" class="headerlink" title="3 对抗样本的线性解释"></a><strong>3 对抗样本的线性解释</strong></h2><p>&emsp;&emsp;我们从解释线性模型的对抗性例子开始。</p>
+<p>&emsp;&emsp;在许多问题中，单个输入特征的精度是有限的。例如，数字图像通常每像素只使用8位，因此它们会丢弃动态范围1/255以下的所有信息。</p>
 
       
     </div>
@@ -635,7 +641,7 @@ show_date_time();
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Explaining-and-Harnessing-Adversarial-Example学习笔记"><span class="nav-number">1.</span> <span class="nav-text">Explaining and Harnessing Adversarial Example学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">1.1.</span> <span class="nav-text">引言</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Explaining-and-Harnessing-Adversarial-Example学习笔记"><span class="nav-number">1.</span> <span class="nav-text">Explaining and Harnessing Adversarial Example学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-引言"><span class="nav-number">1.1.</span> <span class="nav-text">1 引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-相关工作"><span class="nav-number">1.2.</span> <span class="nav-text">2 相关工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-对抗样本的线性解释"><span class="nav-number">1.3.</span> <span class="nav-text">3 对抗样本的线性解释</span></a></li></ol></li></ol></div>
             
 
           </div>
