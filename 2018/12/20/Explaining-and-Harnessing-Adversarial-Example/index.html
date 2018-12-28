@@ -125,10 +125,13 @@
 <meta property="og:site_name" content="ZhuYue&#39;s Home">
 <meta property="og:description" content="Explaining and Harnessing Adversarial Example学习笔记&amp;emsp;&amp;emsp;包括神经网络在内的一些机器学习模型，总会对对抗样本进行错误分类。所谓的对抗样本就是将一个非常小但是人为的最坏的扰动加到数据集的样本中。这样，受扰动得输入会导致模型输出不正确得答案，并且具有很高得置信度。早期对这一现象的解释集中在非线性和过拟合上。相反，我们认为神经网络易受对抗性">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-21T03:01:13.171Z">
+<meta property="og:image" content="https://user-images.githubusercontent.com/44546944/50470072-2f2d3580-09ea-11e9-8a5b-dd3791e234ea.PNG">
+<meta property="og:image" content="https://user-images.githubusercontent.com/44546944/50501496-8c30f600-0a93-11e9-94eb-32b3b47cdfd7.PNG">
+<meta property="og:updated_time" content="2018-12-28T04:02:50.731Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Explaining and Harnessing Adversarial Example">
 <meta name="twitter:description" content="Explaining and Harnessing Adversarial Example学习笔记&amp;emsp;&amp;emsp;包括神经网络在内的一些机器学习模型，总会对对抗样本进行错误分类。所谓的对抗样本就是将一个非常小但是人为的最坏的扰动加到数据集的样本中。这样，受扰动得输入会导致模型输出不正确得答案，并且具有很高得置信度。早期对这一现象的解释集中在非线性和过拟合上。相反，我们认为神经网络易受对抗性">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/44546944/50470072-2f2d3580-09ea-11e9-8a5b-dd3791e234ea.PNG">
 
 
 
@@ -373,7 +376,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.4k
+                  3.2k
                 </span>
               
 
@@ -405,7 +408,19 @@
 <p>&emsp;&emsp;1）Box-constrained L-BFGS能够可靠地找到对抗性的例子<br>&emsp;&emsp;2）在一些数据集上，如ImageNet，对抗样本与原始样本子非常接近，人眼无法区分它们之间的差异。<br>&emsp;&emsp;3）相同的对抗性示例常常被具有不同体系结构的各种分类器错误分类，或者在不同训练集子集上训练。<br>&emsp;&emsp;4）浅层softmax回归模型也容易受到对抗性样本的影响。<br>&emsp;&emsp;5）对抗样本的训练可以使模型正则化。——然而，由于在内部循环中需要昂贵的约束优化，这在当时并不实用。</p>
 <p>&emsp;&emsp;这些结果表明，基于现代机器学习技术的分类器，即使是那些在测试集上获得优异性能的分类器，也没有学习确定正确输出标签的真正基础概念。相反，这些算法已经建造了一个Potemkin village，他的意思是在自然图像中工作的非常好，但是当访问数据分中概率不高的空间点时，就会暴露为假。这尤其令人失望，因为计算机视觉中流行的一种方法是使用卷积网络特征作为欧几里得距离近似感知距离的空间。如果具有不可测量的小感知距离的图像对应于网络中表示为完全不同的类，那么这种相似性显然是有缺陷的。尽管线性分类器也存在同样的问题，但这些结果通常被解释为深度网络的一个缺陷。我们把发现这一缺陷看作是改正它的机会。事实上,顾,Rigazio(2014)和Chalupka等人(2014)已经开始了设计抵抗对抗性扰动的模型的第一步，尽管还没有一个模型能够成功地做到这一点，并且模型同时保持在没有对抗样本时输入的准确性。</p>
 <h2 id="3-对抗样本的线性解释"><a href="#3-对抗样本的线性解释" class="headerlink" title="3 对抗样本的线性解释"></a><strong>3 对抗样本的线性解释</strong></h2><p>&emsp;&emsp;我们从解释线性模型的对抗性例子开始。</p>
-<p>&emsp;&emsp;在许多问题中，单个输入特征的精度是有限的。例如，数字图像通常每像素只使用8位，因此它们会丢弃动态范围1/255以下的所有信息。</p>
+<p>&emsp;&emsp;在许多问题中，单个输入特征的精度是有限的。例如，数字图像通常每像素只使用8位，因此它们会丢弃动态范围1/255以下的所有信息。因为特征的精度是有限的，如果扰动$\eta$的每个元素小于特征精度，则分类器无法将样本X和对抗样本$\tilde{x} = x + \eta$区分开。形式上，对于分类良好的类我们希望给$x$和$\tilde{x}$分配相同的类，只要${||\eta||}_\infty&lt;\epsilon$,其中$\epsilon$足够小，可以被与我们问题相关的传感器或数据存储设备丢弃。</p>
+<p>&emsp;&emsp;考虑到权重向量$w$与对抗样本$\tilde{x}$点乘：</p>
+<script type="math/tex; mode=display">w^T\tilde{x} = w^Tx + w^T\eta</script><p>&emsp;&emsp;可以看出对抗扰动增加了$w^T\eta$才会被激活。通过符号函数$\eta = sign(w)$,我们在满足$\eta$的最大范数约束的情况下，我们能最大化$w^T\eta$。如果权重向量$w$有$n$个维度，且权重向量中元素的平均量值是$m$，那么activation将增加$\epsilon mn$。因为${||\eta||}_\infty$不会因为维度问题而变化，但是由于$\eta$扰动引起的activation变化随$n$维度线性增长，然后对于高维问题，我们可以对输入做很多无限小的改变加起来就是对输出做一个大的改变。我们可以把这看作一种偶然的隐写术，其中线性模型被迫只关注与其权重最接近的信号，即使存在多个信号而其他信号具有更大的幅度。</p>
+<p>&emsp;&emsp;这种解释表明：一个简单的线性模型如果它到输入有足够维度就可以有对抗样本。以前对抗样本的解释包括了神经网络的假设属性，例如他们被假定为高度非线性。我们基于线性的假设更简单，也可以解释为什么softmax回归容易受到对抗性例子的攻击。</p>
+<h2 id="4-非线性模型的线性扰动"><a href="#4-非线性模型的线性扰动" class="headerlink" title="4 非线性模型的线性扰动"></a><strong>4 非线性模型的线性扰动</strong></h2><p>&emsp;&emsp;对抗样本的线性观点提供了一种快速生成他们的方法。我们假设神经网络过于线性，无法抵抗线性对抗扰动。LSTMs (Hochreiter &amp;Schmidhuber, 1997), ReLUs (Jarrett et al., 2009; Glorot et al.,2011),maxout网络(Goodfellow et al.，2013c)都被有意设计成以非常线性的方式运行，以便更容易进行优化。出于同样的原因，更多的非线性模型(如sigmoid网络)被仔细地调整，使其大部分时间处于非饱和、更线性的状态。<br><img src="https://user-images.githubusercontent.com/44546944/50470072-2f2d3580-09ea-11e9-8a5b-dd3791e234ea.PNG" alt="1"><br>图1：应用于ImageNet上的GoogLeNet (Szegedy et al.， 2014a)的快速对抗样本生成演示。我们通过添加一个极其微小的向量，向量元素等于相对于输入的损失函数的梯度的元素的符号函数，就可以改变GoogLeNet对图像的分类。这里我们的.007的$\epsilon$值对应于GoogLeNet转换为实数后8位图像编码的最小位的幅度。</p>
+<p>&emsp;&emsp;$\theta$是模型的参数，$x$是模型的输入，y是与x相关联的目标(用于具有目标的机器学习任务)，$J(\theta,x,y)$是用于神经网络训练的损失函数。对某个特定的模型参数 $\theta$ 而言，FGSM方法将损失函数近似线性化，从而获得保证无穷范数限制的最优的扰动(即${||\eta||}_\infty&lt;\epsilon$)，扰动值具体为：</p>
+<script type="math/tex; mode=display">\eta = \epsilon sign(\nabla_xJ(\theta,x,y))</script><p>&emsp;&emsp;我们将此称为生成对抗样本的“快速梯度符号方法”。 注意，可以使用反向传播有效地计算所需的梯度。</p>
+<p>&emsp;&emsp;我们发现，这种方法确实会导致各种各样的模型对它们的输入进行错误分类。关于ImageNet的示例见图1。我们发现使用$\epsilon$ = 0.25，我们使得浅softmax分类器的错误率为99.9％，MNIST测试集的平均置信度为79.3％。在相同的数据集下，maxout网络对89.4%的对抗样本进行了错误分类，平均置信度为97.6%。同样，使用$\epsilon$ = 0.1，当在CIFAR-10测试集的预处理版本上使用卷积maxout网络时，我们得到的错误率为87.15%，分配给错误标签的平均概率为96.6%。其他产生对抗样本的简单方法是可能的。例如，我们还发现在梯度方向上以一个小角度旋转$x$可以可靠地产生对抗样本。这些简单、廉价的算法能够产生错误分类的实例这一事实为我们解释作为线性结果的对抗样本提供了证据。这些算法还可以作为一种加速对抗性训练或者是分析训练网络的方法。</p>
+<h2 id="5-线性样本对抗训练-VS-权重衰减"><a href="#5-线性样本对抗训练-VS-权重衰减" class="headerlink" title="5 线性样本对抗训练 VS 权重衰减"></a><strong>5 线性样本对抗训练 VS 权重衰减</strong></h2><p>&emsp;&emsp;也许我们可以考虑的最简单的模型是逻辑回归。在这种情况下，快速梯度符号法是准确的。我们可以用这个例子来直观地了解在一个简单的环境中如何生成对抗性的例子。有指导意义的图像见图2。</p>
+<p>&emsp;&emsp;假设要训练一个逻辑回归模型来识别标签 $y \in \{-1, 1\}$，预测函数为 $P(y=1) = \sigma(w^Tx + b)$ (PS:意味着 $P(y=-1) =1- \sigma(w^Tx + b) )$，其中 $\sigma$函数是sigmoid函数，训练由梯度下降法组成,那么该样本的损失函数为： </p>
+<script type="math/tex; mode=display">E_{x,y \sim p_{data}} \varsigma(-y(w^Tx + b))</script><p>&emsp;&emsp;其中$\varsigma(z) = log(1+exp(z))$是$softplus$函数。基于梯度符号函数扰动，我们可以推导出一种简单的解析形式，用于训练x的最坏情况对抗扰动，而不是x本身。注意梯度的符号只是$-sign(w)$,$w^T sign(w)=||w||_1$因此，逻辑回归的对抗性版本是为了最小化:</p>
+<script type="math/tex; mode=display">E_{x,y \sim p_{data}} \varsigma(y(\epsilon ||w||_1-w^Tx - b))</script><p><img src="https://user-images.githubusercontent.com/44546944/50501496-8c30f600-0a93-11e9-94eb-32b3b47cdfd7.PNG" alt="2"><br>图2：快速梯度符号法应用于逻辑回归(它不是近似，但确实是最大范数框中最具破坏性的对敌例子)。a)训练在MNIST上的logistic回归模型的权重。b)训练在MNIST上的logistic回归模型的权值的符号函数输出。这是最优扰动。尽管该模型容量小，适合度好，但这种扰动并不容易被人类观察者识别为与3s和7s之间的关系有关。c) MNIST 3s和7s。在这些例子中，逻辑回归模型在3对7的辨别任务中有1.6%的错误率。d) r = 0.25 logistic回归模型的快速梯度符号对抗例子。逻辑回归模型对这些例子的错误率为99%。</p>
+<p>&emsp;&emsp;这有点类似于$L_1$正则化。然而，有一些重要的区别。最重要的是，$L_1$惩罚在训练过程中被从对抗形式的模型的激活中减去，而不是增加到训练损失函数中。这意味着，如果模型学会做出很高置信度的预测，使$\varsigma$饱和，那么惩罚最终可能开始消失。这并不能保证在不适应的情况下会发生，对抗性训练只会使不适应变得更糟。因此，我们可以认为$L_1$权值衰减是比对抗性训练更糟糕的情况，因为它没有在良好的裕度情况下失活。</p>
 
       
     </div>
@@ -641,7 +656,7 @@ show_date_time();
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Explaining-and-Harnessing-Adversarial-Example学习笔记"><span class="nav-number">1.</span> <span class="nav-text">Explaining and Harnessing Adversarial Example学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-引言"><span class="nav-number">1.1.</span> <span class="nav-text">1 引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-相关工作"><span class="nav-number">1.2.</span> <span class="nav-text">2 相关工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-对抗样本的线性解释"><span class="nav-number">1.3.</span> <span class="nav-text">3 对抗样本的线性解释</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Explaining-and-Harnessing-Adversarial-Example学习笔记"><span class="nav-number">1.</span> <span class="nav-text">Explaining and Harnessing Adversarial Example学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-引言"><span class="nav-number">1.1.</span> <span class="nav-text">1 引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-相关工作"><span class="nav-number">1.2.</span> <span class="nav-text">2 相关工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-对抗样本的线性解释"><span class="nav-number">1.3.</span> <span class="nav-text">3 对抗样本的线性解释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-非线性模型的线性扰动"><span class="nav-number">1.4.</span> <span class="nav-text">4 非线性模型的线性扰动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-线性样本对抗训练-VS-权重衰减"><span class="nav-number">1.5.</span> <span class="nav-text">5 线性样本对抗训练 VS 权重衰减</span></a></li></ol></li></ol></div>
             
 
           </div>
